@@ -72,12 +72,21 @@ def get_company_info(user_reply: str, index_path: str):
 
 
 def save_faiss_locally(vectorstore, path: str):
+    """
+    This function saves a vectorstore locally at a specified path and prints a confirmation message.
+
+    """
     vectorstore.save_local(path)  # type: ignore
 
     print(f"Vectorstore saved locally")
 
 
 def load_documents_as_urls(urls: str):
+    """
+    The function takes a string of URLs separated by commas, loads the documents from those URLs using
+    UnstructuredURLLoader, and returns the loaded documents while also printing the number of documents
+    loaded to console.
+    """
     urls_list = urls.replace(" ", "").split(",")
     loader = UnstructuredURLLoader(urls=urls_list)
     loaded_documents = loader.load()
@@ -87,6 +96,9 @@ def load_documents_as_urls(urls: str):
 
 
 def initialize_vectorstore(input):
+    """
+    This function initializes a vector store using FAISS from input text documents and embeddings.
+    """
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=700, chunk_overlap=300)
 
@@ -101,6 +113,11 @@ def initialize_vectorstore(input):
 
 
 def merge_with_old_vectorstore(new_vectorstore):
+    """
+    This function merges a new vectorstore with an old vectorstore, saves the merged vectorstore
+    locally, and removes the old vectorstore.
+
+    """
     old_vectorstore = FAISS.load_local(company_handbook_faiss_path, embeddings)
 
     old_vectorstore.merge_from(new_vectorstore)

@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from ai_agents import get_agent_zero_shot_response
-from ai_tools import tool_describe_skills, tool_retrieve_company_info, tool_calculate_stock_options, tool_retrieve_news
+from ai_tools import tool_describe_skills, tool_retrieve_company_info, tool_calculate_stock_options
 from ai_functions import load_urls_and_overwrite_index
 from consts import thinking_thoughts
 from utils import extract_messages
@@ -36,12 +36,14 @@ def handle_message_events(event, ack, say):
     user_first_name = app.client.users_info(
         user=user_id)['user']['profile']['first_name']  # type: ignore
     messages_history.append(
-        {"type": "user", "message": f"""My name is {user_first_name}"""})
+        {"type": "user", "message": f"""My name is {user_first_name} and I'll be asking questions about GitLab the company"""})
+    messages_history.append(
+        {"type": "AI", "message": f"""I'm a HR assistant at GitLab and I answer questions cheerfully and concisely using the company guidelines tool."""})
 
     # Generate a response
     user_query = event["text"]
     agent_tools = [tool_retrieve_company_info(
-    ), tool_describe_skills(), tool_calculate_stock_options(), tool_retrieve_news()]
+    ), tool_describe_skills(), tool_calculate_stock_options()]
     response = get_agent_zero_shot_response(
         user_query, tools=agent_tools, messages_history=messages_history)
 
@@ -74,19 +76,23 @@ def handle_feedback(event, say):
     # TODO: save user's feedback to Google Sheets or something!
 
 
+# Handle uploading new documentation using slash command
 @app.command("/upload-new-doc")
 def handle_some_command(body, say, ack):
     ack()
     value = body['text']
+
+    # If user didn't include a URL or URLs, then abort
     if (value == "" or value == None):
         say("Please enter a valid URL to the document!")
         return
-    print(body['text'])
-    say("I'm uploading a new document! :robot_face:")
 
+    say("I'm uploading a new document! :arrow_up:")
+
+    # Load the URLs into vectorstore
     load_urls_and_overwrite_index(value)
 
-    say("I'm done uploading the document! :robot_face:")
+    say("I'm done uploading the document! :white_check_mark:")
 
 
 # Start Slack app

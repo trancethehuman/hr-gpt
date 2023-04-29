@@ -38,5 +38,3 @@ def tool_calculate_stock_options():
     This function takes the user's starting date, their total amount of shares, and their vesting schedules and returns the number of shares they have vested so far along with shares that hasn't vested.
     """
     return Tool(name="Stock Options/Shares calculator", func=lambda query: calculate_vesting(start_date=json.loads(query)["start_date"], total_shares=json.loads(query)["total_shares"], vesting_schedule=json.loads(query)["vesting_schedule"]), description=f"""useful for when asked about stock options and share calculations. Action Input should be a JSON object of a start_date (YYYY-MM-DD), total_shares and vesting_schedule (tuple of decimal numbers) keys.""", return_direct=False)  # type: ignore
-
-# calculate_vesting(start_date=query.start_date, total_shares=query.total_shares, vesting_schedule=query.vesting_schedule)

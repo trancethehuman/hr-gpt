@@ -38,10 +38,11 @@ def get_agent_zero_shot_response(query: str, tools: List, messages_history: List
     agent = initialize_agent(
         tools, llm, agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, verbose=is_agent_verbose, max_iterations=max_iterations, return_intermediate_steps=return_thought_process,  memory=memory)
 
+    # Get results from chain
     result = agent({"input": query})
     answer = result["output"]
 
-    # Debug agent's answer
+    # Debug agent's answer to console
     print(answer)
 
     return answer
