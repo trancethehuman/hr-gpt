@@ -13,6 +13,7 @@ from utils import format_sources, remove_folder
 from consts import learn_more_phrases, llm_model_type
 from langchain.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from consts import company_handbook_faiss_path
 
 
 # Load .env variables
@@ -70,6 +71,12 @@ def get_company_info(user_reply: str, index_path: str):
     return final_response
 
 
+def save_faiss_locally(vectorstore, path: str):
+    vectorstore.save_local(path)  # type: ignore
+
+    print(f"Vectorstore saved locally")
+
+
 def load_documents_as_urls(urls: str):
     urls_list = urls.replace(" ", "").split(",")
     loader = UnstructuredURLLoader(urls=urls_list)
@@ -79,9 +86,9 @@ def load_documents_as_urls(urls: str):
     return loaded_documents
 
 
-def initialize_vectorstore(input, vectorstore_name: str):
+def initialize_vectorstore(input):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1200, chunk_overlap=500)
+        chunk_size=700, chunk_overlap=300)
 
     texts = ""
     if (input is not None):
@@ -93,22 +100,15 @@ def initialize_vectorstore(input, vectorstore_name: str):
     return vectorstore
 
 
-def save_faiss_locally(vectorstore, name: str):
-    vectorstore.save_local(
-        "./output_data/" + "faiss_" + name)  # type: ignore
-
-    print(f"Vectorstore saved locally: {name}")
-
-
 def merge_with_old_vectorstore(new_vectorstore):
-    old_vectorstore = FAISS.load_local("./faiss_company_info", embeddings)
+    old_vectorstore = FAISS.load_local(company_handbook_faiss_path, embeddings)
 
     old_vectorstore.merge_from(new_vectorstore)
     print("Vectorstores merged.")
 
-    remove_folder("./faiss_company_info")
+    remove_folder(company_handbook_faiss_path)
 
-    save_faiss_locally(old_vectorstore, "faiss_company_info")
+    save_faiss_locally(old_vectorstore, company_handbook_faiss_path)
 
     return
 
@@ -118,7 +118,7 @@ def load_urls_and_overwrite_index(urls: str):
     loaded_documents = load_documents_as_urls(urls)
 
     # initialize vectorstore
-    new_vectorstore = initialize_vectorstore(urls, "temporary_vectorstore")
+    new_vectorstore = initialize_vectorstore(loaded_documents)
 
     # Merge the two indexes
     merge_with_old_vectorstore(new_vectorstore)

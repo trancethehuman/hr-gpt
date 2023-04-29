@@ -2,6 +2,24 @@ from datetime import datetime, timedelta
 import shutil
 
 
+def remove_folder(path):
+    try:
+        shutil.rmtree(path)
+        print(f"Successfully removed folder at {path}")
+    except Exception as e:
+        print(f"Error while removing folder at {path}: {e}")
+
+
+def remove_duplicates(my_list):
+    seen = set()
+    new_list = []
+    for item in my_list:
+        if item not in seen:
+            new_list.append(item)
+            seen.add(item)
+    return new_list
+
+
 def format_sources(unformatted_sources, max_displaying_sources: int):
     """
     The function takes a list of LangChain QARetrieval sources (list of dictionaries) and max number of sources to return, extracts the correct key from each dictionary to get the source's name, cleans the
@@ -14,8 +32,11 @@ def format_sources(unformatted_sources, max_displaying_sources: int):
     for source in unformatted_sources:
         sources.append(source.metadata)
 
-    # Limit number of sources to display
+    # Limit number of sources to display and only keep unique sources
     sources = sources[:max_displaying_sources]
+
+    # Remove duplicates
+    print(sources)
 
     # Remove the prefix from the sources
     cleaned_prefix_sources = [item['source'].replace(
@@ -60,11 +81,3 @@ def calculate_vesting(start_date, total_shares, vesting_schedule):
     results = vesting_details
 
     return results
-
-
-def remove_folder(path):
-    try:
-        shutil.rmtree(path)
-        print(f"Successfully removed folder at {path}")
-    except Exception as e:
-        print(f"Error while removing folder at {path}: {e}")
