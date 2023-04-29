@@ -101,4 +101,4 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
 - If you're using Heroku, you can check the logs by running the following command in the terminal:
 
-  - `heroku logs -a chatbot-server-python > logs/logs.txt`
+  - `heroku logs -a hr-gpt > logs/logs.txt`
