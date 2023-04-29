@@ -21,7 +21,7 @@ def tool_describe_skills():
     This function creates a LangChain agent's tool that uses a generic LLM chain to introduce itself and give user suggestions for what it can do.
     """
 
-    return Tool(name="Who are you", func=lambda query: get_intro_response(query), description=f"""useful for questions like 'what can I ask', 'what can you do', 'what else can you do'. Action Input is the user's query.""", return_direct=True)  # type: ignore
+    return Tool(name="Introduction", func=lambda query: get_intro_response(query), description=f"""useful for questions like 'what can I ask', 'what can you do', 'what else can you do', 'what can I ask you', 'can you suggest some things I can ask'. Action Input is the user's direct query.""", return_direct=True)  # type: ignore
 
 
 def tool_retrieve_company_info():
