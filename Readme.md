@@ -69,7 +69,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
   - Put in these details (the first line is to automatically activate the virtual env when you open the terminal)
 
     ```
-    source hr-slackbot-langchain-python/bin/activate
+    source hr-gpt/bin/activate
 
     OPENAI_API_KEY=
     SLACK_APP_TOKEN=
@@ -78,10 +78,10 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
   - Create a new Python virtual environment
 
-    - `python -m venv hr-slackbot-langchain-python` (Mac)
-    - `py -m venv hr-slackbot-langchain-python` (Windows 11)
+    - `python -m venv hr-gpt` (Mac)
+    - `py -m venv hr-gpt` (Windows 11)
 
-  - Start virtual environment manually by running: `source hr-slackbot-langchain-python/bin/activate` (Mac)
+  - Start virtual environment manually by running: `source hr-gpt/bin/activate` (Mac)
 
     - Or start it automatically by opening a new Terminal or Powershell and entering the project's directory.
 
