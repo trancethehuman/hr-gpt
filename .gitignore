@@ -168,5 +168,4 @@ poetry.toml
 .ruff_cache/
 
 #virtual environment
-hr-slackbot-langchain-python
-
+hr-gpt
