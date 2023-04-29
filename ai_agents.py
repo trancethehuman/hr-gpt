@@ -17,7 +17,7 @@ llm = ChatOpenAI(max_retries=3, temperature=0,  # type: ignore
                  model_name=llm_model_type)
 
 
-def get_agent_zero_shot_response(query: str, tools: List, messages_history: List, is_agent_verbose: bool = True, max_iterations: int = 15, return_thought_process: bool = False):
+def get_agent_zero_shot_response(query: str, tools: List, messages_history: List, is_agent_verbose: bool = False, max_iterations: int = 3, return_thought_process: bool = False):
     """
     This function takes a query, a list of tools, and some optional parameters, initializes a
     conversational LangChain agent, and returns the agent's response to the query.

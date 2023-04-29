@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from ai_agents import get_agent_zero_shot_response
-from ai_tools import tool_describe_skills, tool_retrieve_company_info
+from ai_tools import tool_describe_skills, tool_retrieve_company_info, tool_calculate_stock_options
 from consts import thinking_thoughts
 from utils import extract_messages
 
@@ -39,7 +39,8 @@ def handle_message_events(event, ack, say):
 
     # Generate a response
     user_query = event["text"]
-    agent_tools = [tool_retrieve_company_info(), tool_describe_skills()]
+    agent_tools = [tool_retrieve_company_info(
+    ), tool_describe_skills(), tool_calculate_stock_options()]
     response = get_agent_zero_shot_response(
         user_query, tools=agent_tools, messages_history=messages_history)
 
