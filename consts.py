@@ -1,4 +1,4 @@
-company_handbook_faiss_path = "./faiss_gitlab_handbook"
+company_handbook_faiss_path = "./faiss_company_handbook"
 
 llm_model_type = "gpt-3.5-turbo"
 

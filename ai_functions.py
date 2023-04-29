@@ -2,16 +2,17 @@ import os
 import random
 from dotenv import load_dotenv
 from langchain.vectorstores.faiss import FAISS
-from langchain.chains import RetrievalQA, ConversationalRetrievalChain
+from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.callbacks import get_openai_callback
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.callbacks.base import CallbackManager
 from langchain.prompts import PromptTemplate
 from langchain import LLMChain
-from utils import format_sources
+from utils import format_sources, remove_folder
 from consts import learn_more_phrases, llm_model_type
+from langchain.document_loaders import UnstructuredURLLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 
 # Load .env variables
@@ -67,3 +68,60 @@ def get_company_info(user_reply: str, index_path: str):
     final_response = f"""{chat_answer}\n\n📖 {random.choice(learn_more_phrases)}:\n\n{formatted_sources}"""
 
     return final_response
+
+
+def load_documents_as_urls(urls: str):
+    urls_list = urls.replace(" ", "").split(",")
+    loader = UnstructuredURLLoader(urls=urls_list)
+    loaded_documents = loader.load()
+
+    print(f"Loaded {len(loaded_documents)} URL documents.")
+    return loaded_documents
+
+
+def initialize_vectorstore(input, vectorstore_name: str):
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1200, chunk_overlap=500)
+
+    texts = ""
+    if (input is not None):
+        texts = text_splitter.split_documents(input)
+
+    vectorstore = FAISS.from_documents(texts, embeddings)  # type: ignore
+    print("Vectorstore created.")
+
+    return vectorstore
+
+
+def save_faiss_locally(vectorstore, name: str):
+    vectorstore.save_local(
+        "./output_data/" + "faiss_" + name)  # type: ignore
+
+    print(f"Vectorstore saved locally: {name}")
+
+
+def merge_with_old_vectorstore(new_vectorstore):
+    old_vectorstore = FAISS.load_local("./faiss_company_info", embeddings)
+
+    old_vectorstore.merge_from(new_vectorstore)
+    print("Vectorstores merged.")
+
+    remove_folder("./faiss_company_info")
+
+    save_faiss_locally(old_vectorstore, "faiss_company_info")
+
+    return
+
+
+def load_urls_and_overwrite_index(urls: str):
+    # load documents from URLs
+    loaded_documents = load_documents_as_urls(urls)
+
+    # initialize vectorstore
+    new_vectorstore = initialize_vectorstore(urls, "temporary_vectorstore")
+
+    # Merge the two indexes
+    merge_with_old_vectorstore(new_vectorstore)
+
+    # send a message back saying success
+    return "Successfully updated the index with the new documents."

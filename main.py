@@ -5,6 +5,7 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from ai_agents import get_agent_zero_shot_response
 from ai_tools import tool_describe_skills, tool_retrieve_company_info, tool_calculate_stock_options
+from ai_functions import load_urls_and_overwrite_index
 from consts import thinking_thoughts
 from utils import extract_messages
 
@@ -83,7 +84,7 @@ def handle_some_command(body, say, ack):
     print(body['text'])
     say("I'm uploading a new document! :robot_face:")
 
-    # Give LangChain doc loader the URL
+    load_urls_and_overwrite_index(value)
 
     say("I'm done uploading the document! :robot_face:")
 

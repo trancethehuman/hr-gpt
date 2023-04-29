@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import shutil
 
 
 def format_sources(unformatted_sources, max_displaying_sources: int):
@@ -59,3 +60,11 @@ def calculate_vesting(start_date, total_shares, vesting_schedule):
     results = vesting_details
 
     return results
+
+
+def remove_folder(path):
+    try:
+        shutil.rmtree(path)
+        print(f"Successfully removed folder at {path}")
+    except Exception as e:
+        print(f"Error while removing folder at {path}: {e}")
