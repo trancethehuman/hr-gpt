@@ -72,6 +72,21 @@ def handle_feedback(event, say):
     # TODO: save user's feedback to Google Sheets or something!
 
 
+@app.command("/upload-new-doc")
+def handle_some_command(body, say, ack):
+    ack()
+    value = body['text']
+    if (value == "" or value == None):
+        say("Please enter a valid URL to the document!")
+        return
+    print(body['text'])
+    say("I'm uploading a new document! :robot_face:")
+
+    # Give LangChain doc loader the URL
+
+    say("I'm done uploading the document! :robot_face:")
+
+
 # Start Slack app
 if __name__ == "__main__":
     SocketModeHandler(app, app_token).start()
