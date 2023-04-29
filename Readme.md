@@ -10,6 +10,8 @@ As HR, you're probably tired of answering the same questions over and over again
 
 HR-GPT can be the bridge between you and your new hired. She'll also stick around throughout the onboarding period into the 1-month, 3-month and 6-month marks to make sure your hires are cared for.
 
+<img src="./readme_resources/slack_bot_about.png" alt="hr-gpt" width="500">
+
 ## Getting Started
 
 - Prerequisites
