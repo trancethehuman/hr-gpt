@@ -8,9 +8,18 @@ As remote workers, we know the pain of starting a new job and having a million q
 
 As HR, you're probably tired of answering the same questions over and over again. You want to help your new hires, but you also have a million other things to do. Worse, there might be hundreds of new hired in this batch and they're all asking the same questions! You're tired!
 
+<img src="./readme_resources/demo.gif" alt="hr-gpt" width="650">
+
 HR-GPT can be the bridge between you and your new hired. She'll also stick around throughout the onboarding period into the 1-month, 3-month and 6-month marks to make sure your hires are cared for.
 
 <img src="./readme_resources/slack_bot_about.png" alt="hr-gpt" width="500">
+
+## Tech overview
+
+- The Slackbot runs from `main.py`
+- LangChain agent, LLMChain and RetrievalQA are used to answer questions
+- The agent receives a question and pick the best tool for the job (introduce itself, query the knowledge base, or calculate stock vesting schedule)
+- OpenAI's gpt-3.5-turbo is used for both LLM and embedding operations
 
 ## Getting Started
 
