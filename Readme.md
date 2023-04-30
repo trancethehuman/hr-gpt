@@ -1,4 +1,6 @@
-# HR-GPT (Your friendly neighbourhood HR bot)
+# HR-GPT (Your friendly HR Slack AI Agent)
+
+- [Check out the live demo here ](https://join.slack.com/t/hrchatbotdemo-bn49531/shared_invite/zt-1uhxtfou8-OnQc6Xwmv9eS7GFkL8m~EA)
 
 ## Why does this exist?
 
@@ -16,6 +18,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
 ## Tech overview
 
+- [Check out the live demo here ](https://join.slack.com/t/hrchatbotdemo-bn49531/shared_invite/zt-1uhxtfou8-OnQc6Xwmv9eS7GFkL8m~EA)
 - The Slackbot runs from `main.py`
 - LangChain agent, LLMChain and RetrievalQA are used to answer questions
 - The agent receives a question and pick the best tool for the job (introduce itself, query the knowledge base, or calculate stock vesting schedule)
