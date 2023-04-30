@@ -2,7 +2,7 @@
 
 ## Why does this exist?
 
-<img src="./readme_resources/hr_on_phone.png" alt="hr-gpt" width="500">
+<img src="./readme_resources/hr_on_phone.png" alt="hr-gpt" width="650">
 
 As remote workers, we know the pain of starting a new job and having a million questions about the company. We're under pressure to get up to speed quickly, but we also don't like to bother the HR or recruiters too much. So we're stuck!
 
