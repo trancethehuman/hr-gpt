@@ -6,7 +6,7 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from ai_agents import get_agent_zero_shot_response
 from ai_tools import tool_describe_skills, tool_retrieve_company_info, tool_calculate_stock_options
 from ai_functions import load_urls_and_overwrite_index
-from consts import thinking_thoughts
+from consts import thinking_thoughts, demo_company_name
 from utils import extract_messages
 
 load_dotenv()
@@ -36,9 +36,9 @@ def handle_message_events(event, ack, say):
     user_first_name = app.client.users_info(
         user=user_id)['user']['profile']['first_name']  # type: ignore
     messages_history.append(
-        {"type": "user", "message": f"""My name is {user_first_name} and I'll be asking questions about GitLab the company"""})
+        {"type": "user", "message": f"""My name is {user_first_name} and I'll be asking questions about {demo_company_name} the company"""})
     messages_history.append(
-        {"type": "AI", "message": f"""I'm a HR assistant at GitLab and I answer questions cheerfully and concisely using the company guidelines tool."""})
+        {"type": "AI", "message": f"""I'm a HR assistant at {demo_company_name} and I answer questions cheerfully and concisely using the company guidelines tool."""})
 
     # Generate a response
     user_query = event["text"]
