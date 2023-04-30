@@ -22,6 +22,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 - The Slackbot runs from `main.py`
 - LangChain agent, LLMChain and RetrievalQA are used to answer questions
 - The agent receives a question and pick the best tool for the job (introduce itself, query the knowledge base, or calculate stock vesting schedule)
+- User can quickly update current knowledge vectorstore by uploading files directly through Slack or pasting URLs in using a slash (/) command.
 - OpenAI's gpt-3.5-turbo is used for both LLM and embedding operations
 
 ## Getting Started
