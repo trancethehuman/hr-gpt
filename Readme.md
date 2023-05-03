@@ -18,7 +18,6 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
 <img width="700" alt="Screenshot 2023-05-01 at 9 03 37 AM" src="https://user-images.githubusercontent.com/16231195/235455602-c7dadaa7-7dbb-4f1d-b2a7-a8b0b9a18d86.png">
 
-
 ## Tech overview
 
 - [Check out the live demo here ](https://join.slack.com/t/hrchatbotdemo-bn49531/shared_invite/zt-1uhxtfou8-OnQc6Xwmv9eS7GFkL8m~EA)
@@ -27,6 +26,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 - The agent receives a question and pick the best tool for the job (introduce itself, query the knowledge base, or calculate stock vesting schedule)
 - User can quickly update current knowledge vectorstore by uploading files directly through Slack or pasting URLs in using a slash (/) command.
 - OpenAI's gpt-3.5-turbo is used for both LLM and embedding operations
+- Supabase for logs in Postgres
 
 ## Getting Started
 
@@ -92,6 +92,8 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
     OPENAI_API_KEY=
     SLACK_APP_TOKEN=
     SLACK_BOT_TOKEN=
+    SUPABASE_URL=
+    SUPABASE_KEY=
     ```
 
   - Create a new Python virtual environment
