@@ -45,3 +45,4 @@ openai
 faiss-cpu
 unstructured
 slack-bolt
+supabase
