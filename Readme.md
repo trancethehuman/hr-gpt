@@ -16,12 +16,16 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
 <img src="./readme_resources/slack_bot_about.png" alt="hr-gpt" width="500">
 
+<img width="700" alt="Screenshot 2023-05-01 at 9 03 37 AM" src="https://user-images.githubusercontent.com/16231195/235455602-c7dadaa7-7dbb-4f1d-b2a7-a8b0b9a18d86.png">
+
+
 ## Tech overview
 
 - [Check out the live demo here ](https://join.slack.com/t/hrchatbotdemo-bn49531/shared_invite/zt-1uhxtfou8-OnQc6Xwmv9eS7GFkL8m~EA)
 - The Slackbot runs from `main.py`
 - LangChain agent, LLMChain and RetrievalQA are used to answer questions
 - The agent receives a question and pick the best tool for the job (introduce itself, query the knowledge base, or calculate stock vesting schedule)
+- User can quickly update current knowledge vectorstore by uploading files directly through Slack or pasting URLs in using a slash (/) command.
 - OpenAI's gpt-3.5-turbo is used for both LLM and embedding operations
 
 ## Getting Started
