@@ -1,4 +1,4 @@
-# HR-GPT (Your friendly HR Slack AI Agent)
+# Your friendly HR Slack AI Agent (HR-GPT Prototype)
 
 - [Check out the live demo here ](https://join.slack.com/t/hrchatbotdemo-bn49531/shared_invite/zt-1uhxtfou8-OnQc6Xwmv9eS7GFkL8m~EA)
 
