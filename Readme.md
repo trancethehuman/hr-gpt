@@ -36,6 +36,8 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
   - `pip` installed
   - [OpenAI account & API key](https://platform.openai.com/)
   - Slack account, test workspace, bot & app token
+  - Sign up for Supabase to get a URL and key (this is used for logging)
+    - If you don't want this, make sure to comment out the logging code in `slack_respond_with_agent`
 
 - Setup Slack App and get tokens
 
@@ -95,6 +97,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
     OPENAI_API_KEY=
     SLACK_APP_TOKEN=
     SLACK_BOT_TOKEN=
+    SLACK_APP_ID=
     SUPABASE_URL=
     SUPABASE_KEY=
     ```
@@ -114,7 +117,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
 ## Start development
 
-- You can test against a FAISS vector database of GitLab's onboarding process (`tests/faiss_company_handbook`)
+- You can test against a FAISS vector database of GitLab's company handbook (`tests/faiss_company_handbook`)
 
 - Make sure you're in the Python virtual environment (which is indicated by the name of the env in your Terminal/Powershell)
 
