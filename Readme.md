@@ -61,19 +61,22 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
       <img src="./readme_resources/bot_token_scopes.png" alt="bot token scopes" width="300">
 
-      The scopes needed are: `app_mentions:read`, `channels:history`, `channels:join`, `channels:read`, `chat:write`, `chat:write.customize`, `chat:write.public`, `conversations.connect:read`, `conversations.connect:write`, `groups:history`, `groups:read`, `im:history`, `im:read`, `im:write`, `im:write.invites`, `im:write.topic`, `incoming-webhook`, `links:write`, `metadata.message:read`, `mpim:history`, `mpim:read`, `mpim:write`, `reactions:read`, `reactions:write`, `users:read`, `users:read.email`, `users:write`
+      The scopes needed are: `app_mentions:read`, `channels:history`, `channels:join`, `channels:read`, `chat:write`, `chat:write.customize`, `chat:write.public`, `groups:history`, `groups:read`, `groups:write`, `im:history`, `im:read`, `im:write`, `im:write.invites`, `im:write.topic`, `incoming-webhook`, `links:write`, `links.embed:write`, `links:read`, `metadata.message:read`, `mpim:history`, `mpim:read`, `mpim:write`, `reactions:read`, `reactions:write`, `users:read`, `users:read.email`, `users:write`, `users.profile:read`
 
     - User token scopes
 
       <img src="./readme_resources/user_token_scopes.png" alt="user token scopes" width="300">
 
-      The scopes needed are: `im:history`, `im:read`, `im:write`, `im:write.invites`, `im:write.topic`, mpim:history, `mpim:read`, `mpim:write`, `reactions:read`, `reactions:write`
+      The scopes needed are: `im:history`, `im:read`, `im:write`, `im:write.invites`, `im:write.topic`, `mpim:history`, `mpim:read`, `mpim:write`, `reactions:read`, `reactions:write`
 
   - Subscribe to events
 
     <img src="./readme_resources/events.png" alt="subscribe to events" width="300">
 
-    The events are: `app_mention`, `app_mentions:read`, `im_history_changed`, `im:history`, `message.channels`, `channels:history`, `message.im`, `im:history`, `reaction_added`
+    The events are: `app_mention`, `im_history_changed`, `message.channels`, `message.im`, `reaction_added`
+
+  - Enable "Socket Mode" in Socket Mode
+  - Enable Org apps program in Org Level Apps
 
   - Install the Slack app in a workspace
 
@@ -111,9 +114,9 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
 
 ## Start development
 
-- Make sure you're in the Python virtual environment (which is indicated by the name of the env in your Terminal/Powershell)
+- You can test against a FAISS vector database of GitLab's onboarding process (`tests/faiss_company_handbook`)
 
-  <img src="./readme_resources/virtual_env.png" alt="venv" width="300">
+- Make sure you're in the Python virtual environment (which is indicated by the name of the env in your Terminal/Powershell)
 
 - Start the app by running: `python main.py` (Mac) or `py main.py` (Windows 11)
 
