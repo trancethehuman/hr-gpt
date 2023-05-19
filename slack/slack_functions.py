@@ -30,7 +30,7 @@ def slack_respond_with_agent(agent, event, ack, app):
     messages_history.append(
         {"type": "user", "message": f"""My name is {user_first_name}"""})
     messages_history.append(
-        {"type": "AI", "message": f"""I'm a HR assistant at {demo_company_name} and I answer questions cheerfully."""})
+        {"type": "AI", "message": f"""I'm a HR assistant at {demo_company_name} and I only answer questions cheerfully about {demo_company_name} the company."""})
 
     # Write message log to Supabase
     write_message_log(user_name=user_first_name, message=event["text"])
