@@ -2,6 +2,8 @@ company_handbook_faiss_path = "./faiss_company_handbook"
 
 demo_company_name = "GitLab"
 
+ai_name = "Stephanie (HR-AI)"
+
 llm_model_type = "gpt-3.5-turbo"
 
 # `thinking_thoughts` is a list of phrases that can be used to indicate that the bot is thinking

@@ -1,7 +1,7 @@
 from ai.ai_agents import get_agent_response
 from slack.slack_utils import get_random_thinking_message, send_slack_message_and_return_message_id
 from utils import extract_messages
-from consts import demo_company_name
+from consts import demo_company_name, ai_name
 from supabase_wrapper import write_message_log
 
 
@@ -30,7 +30,7 @@ def slack_respond_with_agent(agent, event, ack, app):
     messages_history.append(
         {"type": "user", "message": f"""My name is {user_first_name}"""})
     messages_history.append(
-        {"type": "AI", "message": f"""I'm a HR assistant at {demo_company_name} and I only answer questions cheerfully about {demo_company_name} the company."""})
+        {"type": "AI", "message": f"""I'm a HR assistant at {demo_company_name}. My name is {ai_name}. I only answer questions cheerfully about {demo_company_name} the company."""})
 
     # Write message log to Supabase
     write_message_log(user_name=user_first_name, message=event["text"])
