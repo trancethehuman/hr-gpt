@@ -2,6 +2,7 @@ from ai.ai_agents import get_agent_response
 from slack.slack_utils import get_random_thinking_message, send_slack_message_and_return_message_id
 from utils import extract_messages
 from consts import demo_company_name
+from supabase_wrapper import write_message_log
 
 
 def slack_respond_with_agent(agent, event, ack, app):
@@ -22,9 +23,6 @@ def slack_respond_with_agent(agent, event, ack, app):
         channel=channel, limit=5)
     messages_history.extend(extract_messages(conversation_history))
 
-    # Write message log to Supabase
-    # write_message_log(user_name=user_first_name, message=event["text"])
-
     # Give the bot context of about the user (first name)
     user_id = event["user"]
     user_first_name = app.client.users_info(
@@ -33,6 +31,9 @@ def slack_respond_with_agent(agent, event, ack, app):
         {"type": "user", "message": f"""My name is {user_first_name}"""})
     messages_history.append(
         {"type": "AI", "message": f"""I'm a HR assistant at {demo_company_name} and I answer questions cheerfully."""})
+
+    # Write message log to Supabase
+    write_message_log(user_name=user_first_name, message=event["text"])
 
     # Generate an LLM response using agent
     user_query = event["text"]
@@ -60,7 +61,7 @@ def slack_respond_with_agent(agent, event, ack, app):
                         "text": "👍"
                     },
                     "style": "primary",
-                    "value": "click_me_456"
+                    "value": "feedback_good"
                 },
                 {
                     "type": "button",
@@ -70,7 +71,7 @@ def slack_respond_with_agent(agent, event, ack, app):
                         "text": "👎"
                     },
                     "style": "primary",
-                    "value": "click_me_456"
+                    "value": "feedback_bad"
                 }
             ]
         }
@@ -85,4 +86,4 @@ def slack_respond_with_agent(agent, event, ack, app):
     )
 
     # Write message log to Supabase
-    # write_message_log("AI", response)
+    write_message_log("AI", response)
