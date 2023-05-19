@@ -36,7 +36,7 @@ HR-GPT can be the bridge between you and your new hired. She'll also stick aroun
   - `pip` installed
   - [OpenAI account & API key](https://platform.openai.com/)
   - Slack account, test workspace, bot & app token
-  - Sign up for Supabase to get a URL and key (this is used for logging)
+  - Sign up for [Supabase](https://supabase.com/) to get a URL and key (this is used for logging)
     - If you don't want this, make sure to comment out the logging code in `slack_respond_with_agent`
 
 - Setup Slack App and get tokens
